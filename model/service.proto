@@ -6,6 +6,7 @@ option go_package = "/model";
 
 service DemoService {
   rpc SayHello (HelloRequest) returns (HelloResponse);
+  rpc SayHelloStream(stream HelloRequest) returns (stream HelloResponse);
 }
 
 message HelloRequest {

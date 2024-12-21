@@ -21,6 +21,26 @@ func (s *server) SayHello(ctx context.Context, req *pb.HelloRequest) (*pb.HelloR
 	return &pb.HelloResponse{ServerId: s.serverId}, nil
 }
 
+func (s *server) SayHelloStream(stream pb.DemoService_SayHelloStreamServer) error {
+	for {
+		_, err := stream.Recv()
+		if err != nil {
+			return fmt.Errorf("failed to receive a request: %v", err)
+		}
+		fmt.Printf("server %v receive message from lb\n", s.serverId)
+
+		// Send a response back to the client
+		res := &pb.HelloResponse{
+			ServerId: s.serverId,
+		}
+
+		// Send the response to the client
+		if err := stream.Send(res); err != nil {
+			return fmt.Errorf("failed to send response: %v", err)
+		}
+	}
+}
+
 func main() {
 	go serve("50051")
 	go serve("50052")

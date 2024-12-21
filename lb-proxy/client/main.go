@@ -18,6 +18,9 @@ const (
 	target          = "127.0.0.1:8443"
 	requestInterval = 20 * time.Millisecond
 	requestDeadline = 2 * time.Second
+	// Test load balancing with gRPC stream
+	enableStreamTest = true
+	requestOnStream  = 5000
 )
 
 func main() {
@@ -45,17 +48,25 @@ func makeClient(index int, wg *sync.WaitGroup, stopCh chan struct{}) {
 		_ = conn.Close()
 	}()
 
-	c := pb.NewDemoServiceClient(conn)
+	client := pb.NewDemoServiceClient(conn)
 
 	responses := make(map[string]bool)
 	responseLock := sync.Mutex{}
 
-	ticker := time.NewTicker(requestInterval)
-	defer ticker.Stop()
-
 	requests := 0
 
 	fmt.Printf("start client %v\n", index)
+
+	if enableStreamTest {
+		streamTest(index, &requests, client, responses, &responseLock)
+		return
+	}
+	unaryTest(index, &requests, client, responses, &responseLock, stopCh)
+}
+
+func unaryTest(index int, requests *int, c pb.DemoServiceClient, responses map[string]bool, responseLock *sync.Mutex, stopCh chan struct{}) {
+	ticker := time.NewTicker(requestInterval)
+	defer ticker.Stop()
 
 stop:
 	for {
@@ -63,14 +74,13 @@ stop:
 		case <-stopCh:
 			break stop
 		case <-ticker.C:
-			go doSendRequest(index, &requests, c, responses, &responseLock)
+			go doSendUnaryRequest(index, requests, c, responses, responseLock)
 		}
 	}
-
 	fmt.Printf("client %v make %v requests, received all response from %v server(s), detail: %+v\n", index, requests, len(responses), responses)
 }
 
-func doSendRequest(index int, requests *int, c pb.DemoServiceClient, responses map[string]bool, responseLock *sync.Mutex) {
+func doSendUnaryRequest(index int, requests *int, c pb.DemoServiceClient, responses map[string]bool, responseLock *sync.Mutex) {
 	*requests = *requests + 1
 	timeout, cancelFunc := context.WithTimeout(context.Background(), requestDeadline)
 	defer cancelFunc()
@@ -88,4 +98,34 @@ func doSendRequest(index int, requests *int, c pb.DemoServiceClient, responses m
 	responseLock.Lock()
 	defer responseLock.Unlock()
 	responses[response.ServerId] = true
+}
+
+func streamTest(index int, requests *int, client pb.DemoServiceClient, responses map[string]bool, responseLock *sync.Mutex) {
+	*requests = *requests + 1
+	stream, err := client.SayHelloStream(context.Background())
+	if err != nil {
+		log.Fatalf("could not call SayHello: %v", err)
+	}
+	ticker := time.NewTicker(requestInterval)
+	defer ticker.Stop()
+
+	for i := 0; i < requestOnStream; i++ {
+		req := &pb.HelloRequest{
+			Name: fmt.Sprintf("client %d", i),
+		}
+		if err := stream.Send(req); err != nil {
+			log.Fatalf("failed to send request: %v", err)
+		}
+		response, err := stream.Recv()
+		if err != nil {
+			log.Fatalf("failed to receive response: %v", err)
+		}
+		responseLock.Lock()
+		responses[response.ServerId] = true
+		responseLock.Unlock()
+	}
+	if err := stream.CloseSend(); err != nil {
+		log.Fatalf("failed to close stream: %v", err)
+	}
+	fmt.Printf("client %v make %v requests, received all response from %v server(s), detail: %+v\n", index, *requests, len(responses), responses)
 }
