@@ -38,7 +38,7 @@ func serve(port string) {
 	s := grpc.NewServer()
 	pb.RegisterDemoServiceServer(s, &server{serverId: port})
 
-	fmt.Println("Server is running on port " + port)
+	fmt.Println("server is running on port " + port)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
