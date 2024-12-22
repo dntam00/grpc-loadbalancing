@@ -58,7 +58,7 @@ func makeClient(index int, wg *sync.WaitGroup, stopCh chan struct{}) {
 	fmt.Printf("start client %v\n", index)
 
 	if enableStreamTest {
-		streamTest(index, &requests, client, responses, &responseLock)
+		streamTest(index, client, responses, &responseLock)
 		return
 	}
 	unaryTest(index, &requests, client, responses, &responseLock, stopCh)
@@ -100,14 +100,11 @@ func doSendUnaryRequest(index int, requests *int, c pb.DemoServiceClient, respon
 	responses[response.ServerId] = true
 }
 
-func streamTest(index int, requests *int, client pb.DemoServiceClient, responses map[string]bool, responseLock *sync.Mutex) {
-	*requests = *requests + 1
+func streamTest(index int, client pb.DemoServiceClient, responses map[string]bool, responseLock *sync.Mutex) {
 	stream, err := client.SayHelloStream(context.Background())
 	if err != nil {
 		log.Fatalf("could not call SayHello: %v", err)
 	}
-	ticker := time.NewTicker(requestInterval)
-	defer ticker.Stop()
 
 	for i := 0; i < requestOnStream; i++ {
 		req := &pb.HelloRequest{
@@ -127,5 +124,5 @@ func streamTest(index int, requests *int, client pb.DemoServiceClient, responses
 	if err := stream.CloseSend(); err != nil {
 		log.Fatalf("failed to close stream: %v", err)
 	}
-	fmt.Printf("client %v make %v requests, received all response from %v server(s), detail: %+v\n", index, *requests, len(responses), responses)
+	fmt.Printf("client %v make %v requests, received all response from %v server(s), detail: %+v\n", index, requestOnStream, len(responses), responses)
 }
