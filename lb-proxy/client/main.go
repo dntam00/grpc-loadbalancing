@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	pb "github.com/dangngoctam00/grpc-loadbalancing/model"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/metadata"
-	pb "grpc-loadbalancing/model"
 	"log"
 	"os/signal"
 	"sync"
