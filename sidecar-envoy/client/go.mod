@@ -1,4 +1,4 @@
-module github.com/dangngoctam00/grpc-loadbalancing/lb-proxy
+module github.com/dangngoctam00/grpc-loadbalancing/sidecar-envoy-client
 
 go 1.23.2
 

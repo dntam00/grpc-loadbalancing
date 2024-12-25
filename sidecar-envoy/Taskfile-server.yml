@@ -1,0 +1,20 @@
+version: '3'
+
+vars:
+  local_registry: 127.0.0.1:5001
+
+tasks:
+
+  build:
+    cmds:
+      - docker build -t {{.local_registry}}/hello-sidecar-server:latest -f build/server/Dockerfile ./server
+      - docker push {{.local_registry}}/hello-sidecar-server:latest
+
+  deploy:
+    cmds:
+      - kubectl apply -f deployment/server/
+
+  remove:
+    cmds:
+      - cmd: kubectl delete -f deployment/server/
+        ignore_error: true

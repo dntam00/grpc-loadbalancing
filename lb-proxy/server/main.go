@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	pb "github.com/dangngoctam00/grpc-loadbalancing/model"
 	"google.golang.org/grpc"
-	pb "grpc-loadbalancing/model"
 	"log"
 	"net"
 	"os/signal"

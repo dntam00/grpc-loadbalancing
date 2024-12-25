@@ -3,9 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	pb "github.com/dangngoctam00/grpc-loadbalancing/model"
 	"google.golang.org/grpc"
-
-	pb "grpc-loadbalancing/model"
+	"google.golang.org/grpc/health/grpc_health_v1"
+	"os"
 
 	"log"
 	"net"
@@ -51,15 +52,30 @@ func main() {
 }
 
 func serve(port string) {
+	podName, err := getPodName()
+
+	if err != nil {
+		panic(err)
+	}
+
 	lis, err := net.Listen("tcp", ":"+port)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	pb.RegisterDemoServiceServer(s, &server{serverId: port})
+	pb.RegisterDemoServiceServer(s, &server{serverId: podName})
+	grpc_health_v1.RegisterHealthServer(s, &Health{})
 
-	fmt.Println("server is running on port " + port)
+	fmt.Printf("server %v is running on port %v", podName, port)
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
+}
+
+func getPodName() (string, error) {
+	podName := os.Getenv("POD_NAME")
+	if podName == "" {
+		return "", fmt.Errorf("POD_NAME is not set")
+	}
+	return podName, nil
 }

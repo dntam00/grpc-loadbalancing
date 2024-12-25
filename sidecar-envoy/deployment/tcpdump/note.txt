@@ -1,0 +1,2 @@
+kubectl patch deployment hello-sidecar-client --patch "$(cat deployment/tcpdump/patch.yaml)"
+kubectl attach -c tcpdumper -it hello-sidecar-client-766b5d7f9f-prdvr
