@@ -2,7 +2,10 @@ module github.com/dntam00/grpc-loadbalancing/lb-proxy
 
 go 1.23.2
 
-require google.golang.org/grpc v1.69.2
+require (
+	github.com/dntam00/grpc-loadbalancing/model v0.0.0-20241226101755-6159f7864954
+	google.golang.org/grpc v1.69.2
+)
 
 require (
 	golang.org/x/net v0.30.0 // indirect

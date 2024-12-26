@@ -1,5 +1,5 @@
-github.com/dntam00/grpc-loadbalancing/model v0.0.0-20241224063211-3dd3f5aaac08 h1:QJ5CTl18ntB2AcyoBJizdF7HQ06+S8ctJ3xElq8fvMY=
-github.com/dntam00/grpc-loadbalancing/model v0.0.0-20241224063211-3dd3f5aaac08/go.mod h1:LN7ANjh8col+Q05RbrUHGj/qT7KtMdHhdc3jStQAxOo=
+github.com/dntam00/grpc-loadbalancing/model v0.0.0-20241226101755-6159f7864954 h1:2Zrf980PDxndWARFMZTsSJ1hLZCfjIU9hNYMbxq0/U0=
+github.com/dntam00/grpc-loadbalancing/model v0.0.0-20241226101755-6159f7864954/go.mod h1:U6kZwGwmRBKoLOPLWuetqi4IMM4Kx2QsHixlpahqh4g=
 github.com/go-logr/logr v1.4.2 h1:6pFjapn8bFcIbiKo3XT4j/BhANplGihG6tvd+8rYgrY=
 github.com/go-logr/logr v1.4.2/go.mod h1:9T104GzyrTigFIr8wt5mBrctHMim0Nb2HLGrmQ40KvY=
 github.com/go-logr/stdr v1.2.2 h1:hSWxHoqTgW2S2qGc0LTAI563KZ5YKYRhT3MFKZMbjag=

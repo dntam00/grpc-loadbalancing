@@ -3,7 +3,7 @@ module github.com/dntam00/grpc-loadbalancing/sidecar-envoy-client
 go 1.23.2
 
 require (
-	github.com/dntam00/grpc-loadbalancing/model v0.0.0-20241224063211-3dd3f5aaac08
+	github.com/dntam00/grpc-loadbalancing/model v0.0.0-20241226101755-6159f7864954
 	google.golang.org/grpc v1.69.2
 )
 
