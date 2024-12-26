@@ -1,4 +1,4 @@
-module github.com/dntam00/grpc-loadbalancing/client-side-discovery-grpc
+module github.com/dntam00/grpc-loadbalancing/client-side-discovery/grpc
 
 go 1.23.2
 
