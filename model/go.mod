@@ -1,4 +1,4 @@
-module github.com/dangngoctam00/grpc-loadbalancing/model
+module github.com/dntam00/grpc-loadbalancing/model
 
 go 1.23.2
 

@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	pb "github.com/dangngoctam00/grpc-loadbalancing/model"
+	pb "github.com/dntam00/grpc-loadbalancing/model"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"os"
@@ -20,7 +20,7 @@ type server struct {
 }
 
 func (s *server) SayHello(ctx context.Context, req *pb.HelloRequest) (*pb.HelloResponse, error) {
-	fmt.Printf("server %v receive message from lb\n", s.serverId)
+	fmt.Printf("server %v receive message\n", s.serverId)
 	return &pb.HelloResponse{ServerId: s.serverId}, nil
 }
 
@@ -30,7 +30,7 @@ func (s *server) SayHelloStream(stream pb.DemoService_SayHelloStreamServer) erro
 		if err != nil {
 			return fmt.Errorf("failed to receive a request: %v", err)
 		}
-		fmt.Printf("server %v receive message from lb\n", s.serverId)
+		fmt.Printf("server %v receive message\n", s.serverId)
 
 		// Send a response back to the client
 		res := &pb.HelloResponse{
