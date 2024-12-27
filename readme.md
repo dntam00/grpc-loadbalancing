@@ -1,5 +1,11 @@
 ## gRPC load balancing
 
+This repository includes demo source code and testing for series gRPC load balancing in this blog: https://notes-ngtam.pages.dev/posts/grpc-load-balancer
+- HAProxy as load balancer.
+- Service mesh in K8s with Istio and Envoy.
+- Lookaside load balancing with xDS Envoy.
+- Headless service in K8s.
+
 ### k3d
 
 I use [k3d](https://k3d.io/stable/) to run k3s in local machine.
