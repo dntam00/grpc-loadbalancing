@@ -1,24 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-client
+  name: hello-headless-service-k8s-client
   labels:
-    app: hello-client
+    app: hello-headless-service-k8s-client
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-client
+      app: hello-headless-service-k8s-client
   template:
     metadata:
       labels:
-        app: hello-client
+        app: hello-headless-service-k8s-client
       annotations:
         sidecar.istio.io/inject: "false"
     spec:
+      serviceAccountName: server-user
       containers:
-      - name: hello-client
-        image: localhost:5001/hello-sidecar-client:latest
+      - name: hello-headless-service-k8s-client
+        image: localhost:5001/hello-headless-service-k8s-client:latest
         env:
           - name: POD_NAME
             valueFrom:
@@ -27,9 +28,9 @@ spec:
           - name: NAMESPACE
             value: "default"
           - name: GRPC_SERVER_ADDR
-            value: "hello-sidecar-server.default.svc.cluster.local"
+            value: "dns:///hello-headless-service-k8s-server.default.svc.cluster.local"
           - name: GRPC_SERVER_PORT
-            value: "5005"
+            value: "50051"
           - name: CLIENT_CONNECTION
             value: "3"
           - name: STREAMER_PER_CONNECTION

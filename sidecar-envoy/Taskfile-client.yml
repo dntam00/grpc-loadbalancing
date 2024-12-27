@@ -7,7 +7,7 @@ tasks:
 
   build:
     cmds:
-      - docker build -t {{.local_registry}}/hello-sidecar-client:latest -f build/server/Dockerfile ./client
+      - docker build -t {{.local_registry}}/hello-sidecar-client:latest -f build/client/Dockerfile ../source-k8s-test/client
       - docker push {{.local_registry}}/hello-sidecar-client:latest
 
   deploy:

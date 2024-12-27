@@ -1,9 +1,9 @@
-module github.com/dntam00/grpc-loadbalancing/sidecar-envoy
+module github.com/dntam00/grpc-loadbalancing/source-k8s-test/client
 
 go 1.23.2
 
 require (
-	github.com/dntam00/grpc-loadbalancing/model v0.0.0-20241226101755-6159f7864954
+	github.com/dntam00/grpc-loadbalancing/model v0.0.0-20241226162759-6a14fb82b792
 	google.golang.org/grpc v1.69.2
 )
 
