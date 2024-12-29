@@ -4,38 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbcceba2-016d-4752-bb73-afd32f7efecf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/headless-service-k8s/Taskfile-server.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/headless-service-k8s/build/server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/headless-service-k8s/deployment/server/deployment.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/headless-service-k8s/deployment/server/roles.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source-k8s-test/client/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/grpc-loadbalancing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/grpc-loadbalancing.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/Taskfile-client.yml" beforeDir="false" afterPath="$PROJECT_DIR$/headless-service-k8s/Taskfile-client.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/Taskfile.yml" beforeDir="false" afterPath="$PROJECT_DIR$/headless-service-k8s/Taskfile.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/build/client/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/headless-service-k8s/build/client/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/client/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/client/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/deployment/client/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/headless-service-k8s/deployment/client/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/grpc/balancer.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/grpc/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/grpc/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client-side-discovery/grpc/resolver.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/Taskfile-client.yml" beforeDir="false" afterPath="$PROJECT_DIR$/sidecar-envoy/Taskfile-client.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/Taskfile-server.yml" beforeDir="false" afterPath="$PROJECT_DIR$/sidecar-envoy/Taskfile-server.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/client/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/client/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/client/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/deployment/client/deployment-without-sidecar.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/client/deployment-without-sidecar.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/deployment/client/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/client/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/server/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/server/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/server/healthcheck.go" beforeDir="false" afterPath="$PROJECT_DIR$/source-k8s-test/server/healthcheck.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sidecar-envoy/server/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/source-k8s-test/server/main.go" afterDir="false" />
+    <list default="true" id="dbcceba2-016d-4752-bb73-afd32f7efecf" name="Changes" comment="refactor structure">
+      <change afterPath="$PROJECT_DIR$/grpclb/client/builder.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpclb/client/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grpclb/client/resolver.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,25 +26,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "dntam00"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;dntam00&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/dntam00/grpc-loadbalancing.git",
-    "accountId": "1ca22721-1f31-46dc-8494-1f2edd778ff7"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/dntam00/grpc-loadbalancing.git&quot;,
+    &quot;accountId&quot;: &quot;1ca22721-1f31-46dc-8494-1f2edd778ff7&quot;
   }
-}]]></component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+}</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2qlGQuLv7VaEkQCtgfiHs9VgXb2" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -80,6 +53,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "DefaultGoTemplateProperty": "Go File",
+    "Go Build.go build github.com/dntam00/grpc-loadbalancing/grpclb/client.executor": "Debug",
+    "Go Build.go build github.com/dntam00/grpc-loadbalancing/grpclb/server_lb.executor": "Debug",
+    "Go Build.go build github.com/dntam00/grpc-loadbalancing/lb-proxy/server.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.go.formatter.settings.were.checked": "true",
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
@@ -103,6 +79,42 @@
       <recent name="$PROJECT_DIR$/client-side-discovery/deployment/client" />
     </key>
   </component>
+  <component name="RunManager" selected="Go Build.go build github.com/dntam00/grpc-loadbalancing/grpclb/client">
+    <configuration name="go build github.com/dntam00/grpc-loadbalancing/grpclb/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="grpc-loadbalancing" />
+      <working_directory value="$PROJECT_DIR$/grpclb" />
+      <kind value="PACKAGE" />
+      <package value="github.com/dntam00/grpc-loadbalancing/grpclb/client" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/grpclb/client/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/dntam00/grpc-loadbalancing/grpclb/server_lb" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="grpc-loadbalancing" />
+      <working_directory value="$PROJECT_DIR$/grpclb" />
+      <kind value="PACKAGE" />
+      <package value="github.com/dntam00/grpc-loadbalancing/grpclb/server_lb" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/grpclb/server_lb/main.go" />
+      <method v="2" />
+    </configuration>
+    <configuration name="go build github.com/dntam00/grpc-loadbalancing/lb-proxy/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+      <module name="grpc-loadbalancing" />
+      <working_directory value="$PROJECT_DIR$/lb-proxy" />
+      <kind value="PACKAGE" />
+      <package value="github.com/dntam00/grpc-loadbalancing/lb-proxy/server" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$/lb-proxy/server/main.go" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Build.go build github.com/dntam00/grpc-loadbalancing/grpclb/client" />
+        <item itemvalue="Go Build.go build github.com/dntam00/grpc-loadbalancing/lb-proxy/server" />
+        <item itemvalue="Go Build.go build github.com/dntam00/grpc-loadbalancing/grpclb/server_lb" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -114,6 +126,21 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactor structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor structure" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
