@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-hello-sidecar-backend
+spec:
+  hosts:
+    - "hello-sidecar-backend.default.svc.cluster.local"
+  gateways:
+    - mesh
+  http:
+    - match:
+        - port: 5005
+      route:
+        - destination:
+            host: hello-sidecar-backend.default.svc.cluster.local
+            subset: v0
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: istio-hello-sidecar-backend
+spec:
+  host: hello-sidecar-backend.default.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      simple: RANDOM
+  subsets:
+    - name: v0
+      labels:
+        version: "0"
+    - name: v1
+      labels:
+        version: "1"

@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbcceba2-016d-4752-bb73-afd32f7efecf" name="Changes" comment="refactor structure">
-      <change afterPath="$PROJECT_DIR$/grpclb/client/builder.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grpclb/client/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/grpclb/client/resolver.go" afterDir="false" />
+    <list default="true" id="dbcceba2-016d-4752-bb73-afd32f7efecf" name="Changes" comment="implement static resolver">
+      <change afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/server/virtual_service.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sidecar-envoy/deployment/client/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/client/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sidecar-envoy/deployment/server/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/server/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source-k8s-test/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/source-k8s-test/client/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static-resolver/client/builder.go" beforeDir="false" afterPath="$PROJECT_DIR$/static-resolver/client/builder.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static_resolver/go.mod" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +67,7 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/dntam/Projects/golang/grpc-loadbalancing/headless-service-k8s/build",
+    "last_opened_file_path": "/Users/dntam",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm"
@@ -72,48 +75,12 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/grpclb" />
       <recent name="$PROJECT_DIR$/headless-service-k8s/build" />
       <recent name="$PROJECT_DIR$/source-k8s-test/client" />
       <recent name="$PROJECT_DIR$/source-k8s-test/server" />
       <recent name="$PROJECT_DIR$/client-side-discovery/client" />
-      <recent name="$PROJECT_DIR$/client-side-discovery/deployment/client" />
     </key>
-  </component>
-  <component name="RunManager" selected="Go Build.go build github.com/dntam00/grpc-loadbalancing/grpclb/client">
-    <configuration name="go build github.com/dntam00/grpc-loadbalancing/grpclb/client" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="grpc-loadbalancing" />
-      <working_directory value="$PROJECT_DIR$/grpclb" />
-      <kind value="PACKAGE" />
-      <package value="github.com/dntam00/grpc-loadbalancing/grpclb/client" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/grpclb/client/main.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build github.com/dntam00/grpc-loadbalancing/grpclb/server_lb" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="grpc-loadbalancing" />
-      <working_directory value="$PROJECT_DIR$/grpclb" />
-      <kind value="PACKAGE" />
-      <package value="github.com/dntam00/grpc-loadbalancing/grpclb/server_lb" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/grpclb/server_lb/main.go" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build github.com/dntam00/grpc-loadbalancing/lb-proxy/server" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="grpc-loadbalancing" />
-      <working_directory value="$PROJECT_DIR$/lb-proxy" />
-      <kind value="PACKAGE" />
-      <package value="github.com/dntam00/grpc-loadbalancing/lb-proxy/server" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$/lb-proxy/server/main.go" />
-      <method v="2" />
-    </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Go Build.go build github.com/dntam00/grpc-loadbalancing/grpclb/client" />
-        <item itemvalue="Go Build.go build github.com/dntam00/grpc-loadbalancing/lb-proxy/server" />
-        <item itemvalue="Go Build.go build github.com/dntam00/grpc-loadbalancing/grpclb/server_lb" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -140,7 +107,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor structure" />
+    <MESSAGE value="implement static resolver" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement static resolver" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

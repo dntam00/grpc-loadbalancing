@@ -12,6 +12,7 @@ import (
 	"strconv"
 	"sync"
 	"syscall"
+	"time"
 )
 
 const (
@@ -109,6 +110,7 @@ func unaryTest(index int, wg *sync.WaitGroup) {
 			continue
 		}
 		responses[res.ServerId] = responses[res.ServerId] + 1
+		time.Sleep(20 * time.Millisecond)
 	}
 	fmt.Printf("client %v make %v requests, received all response from %v server(s), detail: %+v\n", index, requestPerClient, len(responses), responses)
 }

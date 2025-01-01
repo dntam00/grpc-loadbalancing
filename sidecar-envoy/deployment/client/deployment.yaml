@@ -25,7 +25,8 @@ spec:
           - name: NAMESPACE
             value: "default"
           - name: GRPC_SERVER_ADDR
-            value: "hello-sidecar-server.default.svc.cluster.local"
+#            value: "hello-sidecar-server.default.svc.cluster.local"
+            value: "hello-sidecar-backend.default.svc.cluster.local"
           - name: GRPC_SERVER_PORT
             value: "5005"
           - name: CLIENT_CONNECTION
@@ -33,7 +34,14 @@ spec:
           - name: STREAMER_PER_CONNECTION
             value: "10"
           - name: REQUEST_PER_CLIENT
-            value: "500"
+            value: "5000"
+        readinessProbe:
+          exec:
+            command:
+              - ls
+              - /
+          initialDelaySeconds: 5
+          periodSeconds: 10
         resources:
           limits:
             cpu: "200m"

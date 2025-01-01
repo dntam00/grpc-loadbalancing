@@ -6,7 +6,7 @@ metadata:
     app: hello-sidecar-server
     sidecar.istio.io/inject: "true"
 spec:
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       app: hello-sidecar-server
@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         app: hello-sidecar-server
+        version: "0"
     spec:
       serviceAccountName: server-user
       containers:
@@ -50,12 +51,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-sidecar-server
+  name: hello-sidecar-backend
 spec:
   selector:
     app: hello-sidecar-server
   ports:
     - port: 5005
-      name: hello-sidecar-server
+      name: grpc-hello-sidecar-backend
       protocol: TCP
       targetPort: 50051
