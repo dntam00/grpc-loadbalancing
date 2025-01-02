@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-sidecar-server-v0
+  name: hello-sidecar-server-v1
   labels:
     app: hello-sidecar-server
     sidecar.istio.io/inject: "true"
@@ -14,7 +14,7 @@ spec:
     metadata:
       labels:
         app: hello-sidecar-server
-        version: "0"
+        version: "1"
     spec:
       serviceAccountName: server-user
       containers:
@@ -40,10 +40,23 @@ spec:
         readinessProbe:
           exec:
             command: [ "/bin/grpc_health_probe", "-addr=:50051", "-rpc-timeout=4s" ]
-          initialDelaySeconds: 10
+          initialDelaySeconds: 5
           timeoutSeconds: 5
         livenessProbe:
           exec:
             command: [ "/bin/grpc_health_probe", "-addr=:50051", "-rpc-timeout=4s" ]
-          initialDelaySeconds: 10
           timeoutSeconds: 5
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-sidecar-backend
+spec:
+  selector:
+    app: hello-sidecar-server
+  ports:
+    - port: 5005
+      name: grpc-hello-sidecar-backend
+      protocol: TCP
+      targetPort: 50051

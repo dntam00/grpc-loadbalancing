@@ -14,6 +14,11 @@ spec:
         - destination:
             host: hello-sidecar-backend.default.svc.cluster.local
             subset: v0
+          weight: 75
+        - destination:
+            host: hello-sidecar-backend.default.svc.cluster.local
+            subset: v1
+          weight: 25
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule

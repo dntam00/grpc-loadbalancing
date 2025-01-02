@@ -64,6 +64,7 @@ func getEnv() {
 }
 
 func main() {
+	time.Sleep(5 * time.Second)
 	getEnv()
 
 	fmt.Printf("---------------\nstart unary test\n---------------\n")

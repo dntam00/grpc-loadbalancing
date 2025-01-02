@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dbcceba2-016d-4752-bb73-afd32f7efecf" name="Changes" comment="implement static resolver">
-      <change afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/server/virtual_service.yaml" afterDir="false" />
+    <list default="true" id="dbcceba2-016d-4752-bb73-afd32f7efecf" name="Changes" comment="add virtual service istio">
+      <change afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/server/deployment_v1.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/server/k8s_service.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sidecar-envoy/deployment/client/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/client/deployment.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sidecar-envoy/deployment/server/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/server/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sidecar-envoy/deployment/server/virtual_service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/sidecar-envoy/deployment/server/virtual_service.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/source-k8s-test/client/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/source-k8s-test/client/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static-resolver/client/builder.go" beforeDir="false" afterPath="$PROJECT_DIR$/static-resolver/client/builder.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static_resolver/go.mod" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +67,7 @@
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
-    "last_opened_file_path": "/Users/dntam",
+    "last_opened_file_path": "/Users/dntam/Projects/golang/grpc-loadbalancing/sidecar-envoy/deployment/server",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm"
@@ -75,11 +75,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sidecar-envoy/deployment/server" />
       <recent name="$PROJECT_DIR$/grpclb" />
       <recent name="$PROJECT_DIR$/headless-service-k8s/build" />
       <recent name="$PROJECT_DIR$/source-k8s-test/client" />
       <recent name="$PROJECT_DIR$/source-k8s-test/server" />
-      <recent name="$PROJECT_DIR$/client-side-discovery/client" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -108,7 +108,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor structure" />
     <MESSAGE value="implement static resolver" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement static resolver" />
+    <MESSAGE value="add virtual service istio" />
+    <option name="LAST_COMMIT_MESSAGE" value="add virtual service istio" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
