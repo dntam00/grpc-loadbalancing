@@ -1,0 +1,15 @@
+{
+  "service": {
+    "name": "kaixin-service",
+    "id": "grpc-server-2",
+    "address": "127.0.0.1",
+    "port": 50053,
+    "checks": [
+      {
+        "grpc": "127.0.0.1:50053",
+        "interval": "10s",
+        "timeout": "1s"
+      }
+    ]
+  }
+}
