@@ -1,132 +1,25 @@
 package main
 
 import (
-	"context"
 	"fmt"
-	pb "github.com/dntam00/grpc-loadbalancing/model"
+	gc "github.com/dntam00/grpc-loadbalancing/grpc/grpc-code/client"
 	_ "github.com/mbobakov/grpc-consul-resolver"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
-	"google.golang.org/grpc/metadata"
 	"log"
-	"os/signal"
-	"sync"
-	"syscall"
-	"time"
 )
 
 const (
-	target          = "consul://localhost:8500/kaixin-service?wait=14s"
-	requestInterval = 20 * time.Millisecond
-	requestDeadline = 2 * time.Second
-	// Test load balancing with gRPC stream
-	enableStreamTest   = false
-	requestOnStream    = 5000
-	numberOfConnection = 1
+	scheme = "consul"
 )
 
 func main() {
-	wg := sync.WaitGroup{}
-	stopCh := make(chan struct{})
-	for i := 0; i < numberOfConnection; i++ {
-		wg.Add(1)
-		go makeClient(i, &wg, stopCh)
+	client, err := gc.NewGRPCClients(1, scheme, "127.0.0.1:8500/kaixin-service?wait=14s")
+	if err != nil {
+		log.Fatalf("Failed to create gRPC client: %v", err)
 	}
-	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
-	defer stop()
-	<-ctx.Done()
-	close(stopCh)
-	wg.Wait()
+
+	//client.TestUnary(2000)
+
+	client.TestStream(100, 1000)
+
 	fmt.Println("finish test client")
-}
-
-func makeClient(index int, wg *sync.WaitGroup, stopCh chan struct{}) {
-	defer wg.Done()
-	conn, err := grpc.NewClient(target,
-		grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy":"round_robin"}`))
-	if err != nil {
-		log.Fatalf("did not connect: %v", err)
-	}
-	defer func() {
-		_ = conn.Close()
-	}()
-
-	client := pb.NewDemoServiceClient(conn)
-
-	responses := make(map[string]bool)
-	responseLock := sync.Mutex{}
-
-	requests := 0
-
-	fmt.Printf("start client %v\n", index)
-
-	if enableStreamTest {
-		streamTest(index, client, responses, &responseLock)
-		return
-	}
-	unaryTest(index, &requests, client, responses, &responseLock, stopCh)
-}
-
-func unaryTest(index int, requests *int, c pb.DemoServiceClient, responses map[string]bool, responseLock *sync.Mutex, stopCh chan struct{}) {
-	ticker := time.NewTicker(requestInterval)
-	defer ticker.Stop()
-
-stop:
-	for {
-		select {
-		case <-stopCh:
-			break stop
-		case <-ticker.C:
-			go doSendUnaryRequest(index, requests, c, responses, responseLock)
-		}
-	}
-	fmt.Printf("client %v make %v requests, received all response from %v server(s), detail: %+v\n", index, *requests, len(responses), responses)
-}
-
-func doSendUnaryRequest(index int, requests *int, c pb.DemoServiceClient, responses map[string]bool, responseLock *sync.Mutex) {
-	*requests = *requests + 1
-	timeout, cancelFunc := context.WithTimeout(context.Background(), requestDeadline)
-	defer cancelFunc()
-
-	// add key for stickiness load balancing at HAProxy
-	md := metadata.Pairs("session-id", fmt.Sprintf("unique-session-id-%v", index))
-	outgoingContext := metadata.NewOutgoingContext(timeout, md)
-
-	response, err := c.SayHello(outgoingContext, &pb.HelloRequest{Name: fmt.Sprintf("client %v", index)})
-	if err != nil {
-		fmt.Println(fmt.Errorf("could not greet: %v", err))
-		return
-	}
-	//fmt.Printf("client %v receive response from server %v\n", index, response.ServerId)
-	responseLock.Lock()
-	defer responseLock.Unlock()
-	responses[response.ServerId] = true
-}
-
-func streamTest(index int, client pb.DemoServiceClient, responses map[string]bool, responseLock *sync.Mutex) {
-	stream, err := client.SayHelloStream(context.Background())
-	if err != nil {
-		log.Fatalf("could not call SayHello: %v", err)
-	}
-
-	for i := 0; i < requestOnStream; i++ {
-		req := &pb.HelloRequest{
-			Name: fmt.Sprintf("client %d", i),
-		}
-		if err := stream.Send(req); err != nil {
-			log.Fatalf("failed to send request: %v", err)
-		}
-		response, err := stream.Recv()
-		if err != nil {
-			log.Fatalf("failed to receive response: %v", err)
-		}
-		responseLock.Lock()
-		responses[response.ServerId] = true
-		responseLock.Unlock()
-	}
-	if err := stream.CloseSend(); err != nil {
-		log.Fatalf("failed to close stream: %v", err)
-	}
-	fmt.Printf("client %v make %v requests, received all response from %v server(s), detail: %+v\n", index, requestOnStream, len(responses), responses)
 }

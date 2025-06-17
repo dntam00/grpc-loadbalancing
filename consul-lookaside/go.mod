@@ -3,10 +3,13 @@ module consul-lookaside
 go 1.23.2
 
 require (
-	github.com/dntam00/grpc-loadbalancing/model v0.0.0-20250102154308-5e1c34d0f903
+	github.com/dntam00/grpc-loadbalancing/grpc/grpc-code v0.0.0
+	github.com/dntam00/grpc-loadbalancing/model v0.0.0-20250612125414-e812d95fc60f
 	github.com/mbobakov/grpc-consul-resolver v1.5.3
 	google.golang.org/grpc v1.73.0
 )
+
+replace github.com/dntam00/grpc-loadbalancing/grpc/grpc-code v0.0.0 => ./../grpc-code
 
 require (
 	github.com/armon/go-metrics v0.4.1 // indirect
