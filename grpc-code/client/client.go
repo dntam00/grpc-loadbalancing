@@ -22,7 +22,7 @@ type dumpClient struct {
 }
 
 var (
-	requestInterval = 50 * time.Millisecond
+	requestInterval = 10 * time.Millisecond
 	requestDeadline = 2 * time.Second
 )
 

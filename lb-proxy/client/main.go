@@ -17,9 +17,9 @@ func main() {
 		log.Fatalf("Failed to create gRPC client: %v", err)
 	}
 
-	//client.TestUnary(2000)
+	client.TestUnary(2000)
 
-	client.TestStream(100, 1000)
+	//client.TestStream(50, 1000)
 
 	fmt.Println("finish test client")
 }
