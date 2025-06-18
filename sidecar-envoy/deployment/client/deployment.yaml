@@ -13,10 +13,12 @@ spec:
     metadata:
       labels:
         app: hello-sidecar-client
+      annotations:
+        sidecar.istio.io/inject: "true"
     spec:
       containers:
       - name: hello-sidecar-client
-        image: localhost:5001/hello-sidecar-client:latest
+        image: kaixin-registry:5001/hello-sidecar-client:v1.0
         env:
           - name: POD_NAME
             valueFrom:

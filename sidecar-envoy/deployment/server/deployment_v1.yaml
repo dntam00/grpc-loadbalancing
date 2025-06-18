@@ -22,7 +22,7 @@ spec:
         ports:
           - protocol: TCP
             containerPort: 50051
-        image: localhost:5001/hello-sidecar-server:latest
+        image: kaixin-registry:5001/hello-sidecar-server:v1.0
         env:
           - name: POD_NAME
             valueFrom:

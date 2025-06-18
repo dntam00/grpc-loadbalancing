@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: hello-client
-        image: localhost:5001/hello-sidecar-client:latest
+        image: kaixin-registry:5001/hello-sidecar-client:v1.0
         env:
           - name: POD_NAME
             valueFrom:

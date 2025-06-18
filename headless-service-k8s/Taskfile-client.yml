@@ -1,14 +1,14 @@
 version: '3'
 
 vars:
-  local_registry: 127.0.0.1:5001
+  local_registry: kaixin-registry:5001
 
 tasks:
 
   build:
     cmds:
-      - docker build -t {{.local_registry}}/hello-headless-service-k8s-client:latest -f build/client/Dockerfile ../source-k8s-test/client
-      - docker push {{.local_registry}}/hello-headless-service-k8s-client:latest
+      - docker build -t {{.local_registry}}/hello-headless-service-k8s-client:v1.0 -f build/client/Dockerfile ../source-k8s-test/client
+      - docker push {{.local_registry}}/hello-headless-service-k8s-client:v1.0
 
   deploy:
     cmds:

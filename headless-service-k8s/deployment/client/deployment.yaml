@@ -19,7 +19,7 @@ spec:
       serviceAccountName: server-user
       containers:
       - name: hello-headless-service-k8s-client
-        image: localhost:5001/hello-headless-service-k8s-client:latest
+        image: kaixin-registry:5001/hello-headless-service-k8s-client:v1.0
         env:
           - name: POD_NAME
             valueFrom:
